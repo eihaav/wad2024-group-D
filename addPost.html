@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Add Post</title>
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header>
+            <nav>
+              <a href="index.html">Home</a>|<a href="addPost.html">addPost</a>
+            </nav>
+            <img src="src/blank-profile-picture.webp" alt="Blank Profile Picture">
+        </header>
+
+        <!-- Center box -->
+        <div class="center_box">
+            <!-- Post Body -->
+            <div class="container">
+                <p>
+                    Post
+                    Body
+                </p>
+                <textarea id="post-text-area" name="post_text" placeholder="textarea"></textarea>
+            </div>
+            <!-- Select File -->
+            <div class="container">
+                <p>
+                    Select
+                    File
+                </p>
+                <input type="file" id="upload_file" name="upload_file" hidden>
+                <label for="upload_file"> Choose File </label>
+            </div>
+
+            
+        </div>
+    </body>
+</html>

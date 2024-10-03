@@ -85,6 +85,7 @@ footer{
 }
 a:hover{
     background-color:whitesmoke;
+    color: black;
 }
 body{
     display: flex;
@@ -113,15 +114,30 @@ html{
 .container {
     display: flex;
     flex-direction: row;
+    margin: 5%;
 }
 
 .bluebutton {
-    background-color: blue;
+    background-color: rgb(0, 81, 139);
+
+    border-radius: 0px;
+
+    margin: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+
+    
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    
 }
 
 textarea {
     border-width: 0px;
     border-radius: 0px;
+
+    min-height: 100px;
     
     resize: none;
 
@@ -130,8 +146,10 @@ textarea {
 input + label {
     background-color: gray;
     color: white;
+
     border-color: black;
     border-radius: 1px;
     border: 1px;
+
     padding: 5px;
 }

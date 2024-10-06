@@ -4,7 +4,7 @@ body > header{
     justify-content: space-between;
     align-items: center;
 }
-nav + img{
+a > img{
     height: 50px;
 }
 nav a{
@@ -17,6 +17,7 @@ nav{
     border-radius: 5%;
     font-size: larger;
 }
+
 .postHeader > img {
     height: 25px;
     border-radius: 50%;
@@ -81,12 +82,15 @@ footer{
 *{
     margin: 1%;
     border-radius: 10px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family:'Courier New', Courier, monospace;
 }
-a:hover{
+
+a:not(:has(img)):hover
+{
     background-color:whitesmoke;
     color: black;
 }
+
 body{
     display: flex;
     flex-direction: column;
@@ -114,6 +118,8 @@ html{
 .container {
     display: flex;
     flex-direction: row;
+    justify-content:center;
+
     margin: 5%;
 }
 
@@ -147,9 +153,59 @@ input + label {
     background-color: gray;
     color: white;
 
-    border-color: black;
+    border-style: solid;
     border-radius: 1px;
-    border: 1px;
+    border-width: 1px;
+    border-color: black;
 
-    padding: 5px;
+    display: flex;
+    align-items: center;
+
+    padding: 7px;
 }
+
+#login_box
+{
+    margin-top: 20px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    margin: 20px;
+    font-size: large;
+}
+
+h1 ~ a
+{
+    text-decoration: none;
+    color:rgb(0, 183, 255)
+}
+
+input
+{
+    margin-top: 5px;
+    width: 125px;
+    border: none;
+    border-radius: 0px;
+    padding: 10px;
+}
+
+form
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+button.bluebutton
+{   
+    border: 0;
+    padding: 7px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+
+

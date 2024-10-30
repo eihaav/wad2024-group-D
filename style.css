@@ -39,6 +39,9 @@ nav{
     margin-right: 1%;
     margin-top: 0px;
 }
+.postContent p{
+    white-space: pre-line;
+}
 .postContent{
     display: flex;
     flex-direction: column;

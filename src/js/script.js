@@ -18,6 +18,8 @@ async function GetPostData(){
         console.error(error.message);
       }
 }
+
+
 async function PopulatePosts(postsJson){
     //console.log(postsJson);
     const postsDiv = document.getElementsByClassName("posts");
@@ -93,7 +95,6 @@ function toggleDropdown() {
 window.onclick = function(event) {
   
   if (!event.target.matches('.dropdown_button')) {
-    
     var dropdowns = document.getElementsByClassName("dropdown_content");
     var i;
     for (i = 0; i < dropdowns.length; i++) { // closes dropdowns

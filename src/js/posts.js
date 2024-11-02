@@ -1,8 +1,7 @@
-async function GetPostData(){
+/*async function GetPostData(){
     const url = "https://api.jsonsilo.com/public/255e8cdc-2a8f-47e4-ade6-f50c448a4b6f";
     try 
     {
-        const requestHeaders = new Headers();
         const response = await fetch(url);
         if (!response.ok) 
             {
@@ -17,16 +16,33 @@ async function GetPostData(){
       {
         console.error(error.message);
       }
+}*/
+
+async function GetLocalPostData(){
+  const path = "src/posts.json";
+  try 
+  {
+      const response = await fetch(path);
+      if (!response.ok) 
+          {
+        throw new Error(`Response status: ${response.status}`);
+      }
+  
+      const json = await response.json();
+      PopulatePosts(json);
+    } 
+    catch (error) 
+    {
+      console.error(error.message);
+    }
 }
 
 
 async function PopulatePosts(postsJson){
-    //console.log(postsJson);
     const postsDiv = document.getElementsByClassName("posts");
     postsJson["posts"].sort((a, b) => {return new Date(b["date"]).getTime() - new Date(a["date"]).getTime()})
     for (let index = 0; index < postsJson["posts"].length; index++) {
         const postData = postsJson["posts"][index];
-        //console.log(postData);
         let postWrapper = document.createElement("article");
 
         let postHeader = document.createElement("header");
@@ -82,23 +98,9 @@ function DateToHumanReadable(date){
     };
     let month = monthMap[date.getMonth()]
     let humanReadable = month + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
-    //console.log(humanReadable);
     return humanReadable;
 }
 
-/*<article>
-            <header class="postHeader">
-              <img src="src/blank-profile-picture.webp" alt="Blank Profile Picture">
-              <p>Sept 30, 2024</p>
-              </header>
-              <div class="postContent">
-                <p>
-                  This is an example of post content. This is the very first post made on this site.
-                </p>
-              </div>
-              <img src="src/likeButton.png" alt="Like this Post" class="likeButton">
-            </article>*/
-GetPostData()
-//const posts = GetPostData();
 
-//console.log(posts)
+// GetPostData()
+GetLocalPostData()

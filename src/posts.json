@@ -1,0 +1,64 @@
+{
+  "posts": [
+    {
+      "date": "2024-09-30, 18:45",
+      "media": "",
+      "author": "EIHaav",
+      "content": "This is an example of post content. This is the very first post made on this site."
+    },
+    {
+      "date": "2024-10-01, 13:27",
+      "media": "",
+      "author": "EIHaav",
+      "content": "This is another post. It may have been obvious but this was posted after the previous post."
+    },
+    {
+      "date": "2024-10-01, 14:41",
+      "media": "images/TartuRaekoda.webp",
+      "author": "EIHaav",
+      "content": "This is yet another post. This time there's a picture!"
+    },
+    {
+      "date": "2024-10-01, 16:20",
+      "media": "images/TartuPortrait.webp",
+      "author": "EIHaav",
+      "content": "This, too, is a post. This time I'm trying out a portrait photo."
+    },
+    {
+      "date": "2024-10-02, 12:10",
+      "media": "",
+      "author": "EIHaav",
+      "content": "This is the fifth and final post for now. I think I ought to make this one a bit longer to test out how these are displayed.\nMight as well add a line break for good measure."
+    },
+    {
+      "date": "2024-10-28, 18:11",
+      "media": "",
+      "author": "EIHaav",
+      "content": "The second wave of posts starts now."
+    },
+    {
+      "date": "2024-10-28, 19:31",
+      "media": "images/fellOmen.webp",
+      "author": "EIHaav",
+      "content": "Put these foolish ambitions to rest."
+    },
+    {
+      "date": "2024-10-28, 20:24",
+      "media": "",
+      "author": "EIHaav",
+      "content": "Kind of a struggle when you have to get to 10 posts but you have nothing smart to say. #sadtimes"
+    },
+    {
+      "date": "2024-10-31, 07:06",
+      "media": "",
+      "author": "EIHaav",
+      "content": "Happy halloween!!!"
+    },
+    {
+      "date": "2024-10-31, 19:11",
+      "media": "",
+      "author": "EIHaav",
+      "content": "This spot marks our last post. But you may post here too, if you like."
+    }
+  ]
+}

@@ -33,6 +33,13 @@ nav{
     padding: 5%;
     background-color: lightgray;
 }
+
+@media (max-width: 640px) {
+    .sidebar {
+        display: none;
+    }
+}
+
 .posts {
     flex-grow: 1;
     margin-left: 1%;

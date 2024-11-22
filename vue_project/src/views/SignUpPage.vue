@@ -1,13 +1,7 @@
 <template>
   <Header></Header>
   <main>
-    <aside class="sidebar" id="leftSidebar"> </aside>
     
-    <!-- Remove this when adding posts as components -->
-    <div>Dummy Content Holder</div>
-    <!-- Remove this when adding posts as components -->
-
-    <aside class="sidebar" id="rightSidebar"> </aside>
   </main>
   <Footer></Footer>
 </template>

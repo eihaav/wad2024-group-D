@@ -12,7 +12,7 @@ var iscapital = false;
 var isletter = false;
 var isnumber = false;
 var isstartswith = false;
-var isspecialshar = false;
+var isspecialshar = false; 
 
 // When the user clicks on the password field, show the message box
 myInput.onfocus = function() {

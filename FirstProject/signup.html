@@ -23,7 +23,7 @@
 
         <form action="index.html">
         <input type="email" placeholder="Email" name="email" required>
-        <input type="password" placeholder="Password" name="password" required>
+        <input type="password" placeholder="Password" name="password" id="password" required>
         <button type="submit" class="bluebutton">Signup!</button>
         </form>
 
@@ -33,13 +33,15 @@
       </div>
         
       <!-- Password validation messages-->
-      <div class="validation_message">
+      <div class="validation_message" id="validation_message">
         <b>Password must contain the following:</b>
-        <p id="validation_letter" class="invalid">At least two lowercase letters</p>
+        <p id="validation_minmax" class="invalid">At least 8 characters and less than 15 characters</p>
         <p id="validation_capital" class="invalid">At least one capital letter</p>
+        <p id="validation_letter" class="invalid">At least two lowercase letters</p>
         <p id="validation_number" class="invalid">At least one numeric value</p>
+        <p id="validation_starts" class="invalid">Starts with an uppercase letter</p>
         <p id="validation_special" class="invalid">Contain the character "_"</p>
-        <p id="validation_length" class="invalid">At least 8 characters and less than 15 characters</p>
+        
       </div>
 
     </main>

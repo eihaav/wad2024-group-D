@@ -246,5 +246,29 @@ button.bluebutton
 }
 
 
-
 .show {display: block;} 
+
+/** Password Validation **/
+.signupmain {
+    display: block;
+
+}
+
+.validation_message {
+    display:none;
+    padding: 20px;
+    margin-top: 10px;
+
+    margin: auto;
+    width: 300px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}

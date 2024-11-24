@@ -1,7 +1,7 @@
 <template>
   <Header></Header>
-  <main>
-    <SignUpBox></SignUpBox>
+  <main class="signupmain">
+    <SignUpComp></SignUpComp>
   </main>
   <Footer></Footer>
 </template>
@@ -10,14 +10,23 @@
 // @ is an alias to /src
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-import SignUpBox from '../components/SignUpBox.vue'
+import SignUpComp from '@/components/SignUpComp.vue';
+
 
 export default {
   name: 'SignUpPage',
   components: {
-    Header, 
+    Header,
     Footer,
-    SignUpBox
+    SignUpComp
+
   }
 }
 </script>
+
+<style scoped>
+.signupmain {
+  display: block;
+  background-color: lightgray;
+}
+</style>

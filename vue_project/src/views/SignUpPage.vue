@@ -12,12 +12,14 @@ import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import SignUpComp from '@/components/SignUpComp.vue';
 
+
 export default {
   name: 'SignUpPage',
   components: {
     Header,
     Footer,
     SignUpComp
+
   }
 }
 </script>

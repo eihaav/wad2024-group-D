@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Signup</title>
-  </head>
-
+<template>
   <body>
-    <header>
-      <nav>
-        <a href="index.html">Home</a>
-      </nav>
-      <a href = "login.html">
-        <img src="src/blank-profile-picture.webp" alt="Blank Profile Picture">
-      </a>
-    </header>
-
-  
-    
     <main class="signupmain">
       <div class = "center_box" id="login_box">
         <h1>Signup to PostIt</h1>
@@ -33,7 +14,7 @@
         <a href="login.html">Log in</a>
         
       </div>
-        
+
       <!-- Password validation messages-->
       <div class="validation_message" id="validation_message">
         <b>Password must contain the following:</b>
@@ -44,9 +25,41 @@
         <p id="validation_starts" class="invalid">Starts with an uppercase letter</p>
         <p id="validation_special" class="invalid">Contain the character "_"</p>
       </div>
-
+      
     </main>
-
-    <script type="text/javascript" src="src/js/signupForm.js"></script>
   </body>
-</html>
+</template>
+  
+
+
+<script>
+export default {
+  name: 'SignUpBox',
+};
+</script>
+  
+<style scoped>
+.signupmain {
+    display: block;
+
+}
+
+.validation_message {
+    display:none;
+    padding: 20px;
+    margin-top: 10px;
+
+    margin: auto;
+    width: 300px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}
+</style>

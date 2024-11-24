@@ -2,6 +2,8 @@
   <Header></Header>
   <main>
     
+    
+
   </main>
   <Footer></Footer>
 </template>

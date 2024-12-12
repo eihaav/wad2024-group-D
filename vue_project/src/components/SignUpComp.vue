@@ -3,10 +3,11 @@
         <h1>Sign Up to PostIt</h1>
 
         <form @submit.prevent="handleSubmit">
-            <span class="formrow">Email <input type="email" placeholder="Email" name="email" required /></span>
-            <span class="formrow">Password <input type="password" placeholder="Password" name="password" id="password" v-model="password"
-                @input="validatePassword" required /></span>
-            <button type="submit" class="bluebutton">Sign Up!</button>
+            <span class="formrow">Email <input type="email" placeholder="Email" name="email" required
+                    v-model="email" /></span>
+            <span class="formrow">Password <input type="password" placeholder="Password" name="password" id="password"
+                    v-model="password" @input="validatePassword" required /></span>
+            <button class="bluebutton">Sign Up!</button>
         </form>
         <!-- Password validation messages-->
         <div class="validation_message">
@@ -36,6 +37,7 @@ export default {
     name: "SignUpComp",
     data() {
         return {
+            email: '',
             password: '', // Bound to the input field
             passwordRules: {
                 minmax: true,
@@ -95,9 +97,32 @@ export default {
                 event.preventDefault(); // Prevent submission if the form is invalid
                 alert('Please fix the password requirements before signing up.');
             } else {
-                this.password = "";
-                this.$router.push("/")
+                this.SignUp();
             }
+        },
+
+        SignUp() {
+            var data = {
+                email: this.email.toLowerCase(),
+                password: this.password
+            };
+            fetch("http://localhost:3000/auth/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: 'include',
+                body: JSON.stringify(data),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    this.$router.push("/");
+                })
+                .catch((e) => {
+                    console.log(e);
+                    console.log("error");
+                });
         },
     },
 };
@@ -137,7 +162,8 @@ form {
     flex-direction: column;
     margin-top: 10px;
 }
-.formrow{
+.formrow {
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -175,7 +201,7 @@ button.bluebutton {
     align-self: center;
     border-radius: 25px;
 }
-.bluebutton:hover{
+.bluebutton:hover {
     background-color: rgb(93, 173, 230);
 }
 

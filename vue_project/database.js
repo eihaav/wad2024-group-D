@@ -37,7 +37,7 @@ const createPostTblQuery = `
         "date" DATE NOT NULL  
     );`;
 
-execute(createTblQuer, createPostTblQuery).then(result => {
+execute(createTblQuery, createPostTblQuery).then(result => {
     if (result) {
         console.log('Table "users" is created');
     }

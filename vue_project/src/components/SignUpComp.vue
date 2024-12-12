@@ -162,8 +162,8 @@ form {
     flex-direction: column;
     margin-top: 10px;
 }
-
 .formrow {
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -201,7 +201,6 @@ button.bluebutton {
     align-self: center;
     border-radius: 25px;
 }
-
 .bluebutton:hover {
     background-color: rgb(93, 173, 230);
 }

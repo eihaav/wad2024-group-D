@@ -12,72 +12,71 @@ const routes = [
     path: '/',
     name: 'home',
     component: MainPage,
-    meta: { title: "Homepage"},
-    beforeEnter: async(to, from, next) => {
+    meta: { title: "Homepage" },
+    beforeEnter: async (to, from, next) => {
       let authResult = await auth.authenticated();
       if (!authResult) {
-          next('/login')
+        next('/login')
       } else {
-          next();
+        next();
       }
-  }
+    }
   },
   {
     path: '/login',
     name: 'login',
     component: LoginPage,
-    meta: { title: "Log In"}
+    meta: { title: "Log In" }
   },
 
   {
     path: '/signup',
     name: 'signup',
     component: SignUpPage,
-    meta: { title: "Sign Up"}
+    meta: { title: "Sign Up" }
   },
 
   {
     path: '/contacts',
     name: 'contacts',
     component: () =>
-      import ( "../views/ContactPage.vue"),
-    meta: { title: "Contact Us"}
-  }
+      import("../views/ContactPage.vue"),
+    meta: { title: "Contact Us" }
   },
-  {
-    path: '/addpost',
+{
+  path: '/addpost',
     name: 'addpost',
-    component: AddPost,
-    meta: { title: "Add Post"},
-    beforeEnter: async(to, from, next) => {
-      let authResult = await auth.authenticated();
-      if (!authResult) {
-          next('/login')
-      } else {
-          next();
-      }
-  }    
-  },
-  {
-    path: "/api/singlepost/:id",
-    name: "SinglePost",
-    component: SinglePost,
-    beforeEnter: async(to, from, next) => {
-      let authResult = await auth.authenticated();
-      if (!authResult) {
-          next('/login')
-      } else {
-          next();
-      }
+      component: AddPost,
+        meta: { title: "Add Post" },
+  beforeEnter: async (to, from, next) => {
+    let authResult = await auth.authenticated();
+    if (!authResult) {
+      next('/login')
+    } else {
+      next();
+    }
   }
 },
-  {
-    path: '/contacts',
+{
+  path: "/api/singlepost/:id",
+    name: "SinglePost",
+      component: SinglePost,
+        beforeEnter: async (to, from, next) => {
+          let authResult = await auth.authenticated();
+          if (!authResult) {
+            next('/login')
+          } else {
+            next();
+          }
+        }
+},
+{
+  path: '/contacts',
     name: 'contacts',
-    component: () =>
-      import ( "../views/ContactPage.vue"),
-    meta: { title: "Contact Us"}
-  },
+      component: () =>
+        import("../views/ContactPage.vue"),
+        meta: { title: "Contact Us" }
+},
 ]
 
 const router = createRouter({

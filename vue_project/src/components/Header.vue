@@ -2,7 +2,7 @@
     <header>
         <nav>
             <span>Project Group D</span><br>
-            <span><router-link to="/">Main</router-link>|<router-link to="/signup">Sign Up</router-link></span>
+            <span><router-link to="/">Home</router-link>|<router-link to="/contacts">Contacts</router-link></span>
         </nav>
     </header>
 </template>

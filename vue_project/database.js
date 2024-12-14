@@ -13,6 +13,7 @@ const execute = async(query1, query2) => {
         await pool.connect(); // create a connection
         await pool.query(query1); // executes a query
         await pool.query(query2);
+
         return true;
     } catch (error) {
         console.error(error.stack);
@@ -36,10 +37,12 @@ const createPostTblQuery = `
         "id" SERIAL PRIMARY KEY,         
 	    "body" VARCHAR(200) NOT NULL,
         "date" TIMESTAMP NOT NULL  
+
     );`;
 
 execute(createTblQuery, createPostTblQuery).then(result => {
     if (result) {
+
         console.log('Table "users" and "posts" were created');
     }
 });

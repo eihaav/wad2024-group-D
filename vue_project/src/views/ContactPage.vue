@@ -5,6 +5,7 @@
         <h1>Our Contact Information</h1>
         <p><b>Team Members:</b></p>
         <p>Charlotte Pree<br>Erik Ivar Haav<br>Anton Otrokov</p>
+
         </div>
       </main>
     <Footer></Footer>

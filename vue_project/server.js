@@ -74,6 +74,7 @@ app.put('/api/posts/:id', async(req, res) => {
         //console.log("Post date was: " + post.date);
         const updatepost = await pool.query(
             "UPDATE posts SET (id, body, date) = ($1, $2, $3) WHERE id = $1 RETURNING*", [id, post.body, post.date]
+
         );
         res.json(updatepost);
     } catch (err) {
@@ -117,6 +118,7 @@ app.get('/auth/authenticate', async(req, res) => {
             })
         } else { //applies when the token does not exist
             console.log('author is not authenticated');
+
             res.send({ "authenticated": authenticated }); // authenticated = false
         }
     } catch (err) {
@@ -137,6 +139,7 @@ app.post('/auth/signup', async(req, res) => {
             res.status(409).send("EMAIL_EXISTS");
             return;
         }
+
         const salt = await bcrypt.genSalt(); //  generates the salt, i.e., a random string
         const bcryptPassword = await bcrypt.hash(password, salt) // hash the password and the salt 
         const authUser = await pool.query( // insert the user and the hashed password into the database

@@ -9,6 +9,7 @@
                     v-model="password" @input="validatePassword" required /></span>
             <p :class="{ 'valid': !emailExists, 'invalid': emailExists }">
                 Email already exists.</p>
+
             <button class="bluebutton">Sign Up!</button>
         </form>
         <!-- Password validation messages-->
@@ -51,6 +52,7 @@ export default {
                 allValid: true,
             },
             emailExists: false,
+
         };
     },
     methods: {
@@ -125,6 +127,7 @@ export default {
                     }
                     return response;
                 })
+
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
@@ -225,5 +228,4 @@ h1~a {
     text-decoration: none;
     color: rgb(0, 183, 255);
 }
-
 </style>

@@ -8,10 +8,12 @@ const pool = new Pool({
     port: "5432"
 });
 
-const execute = async(query) => {
+const execute = async(query1, query2) => {
     try {
         await pool.connect(); // create a connection
-        await pool.query(query); // executes a query
+        await pool.query(query1); // executes a query
+        await pool.query(query2);
+
         return true;
     } catch (error) {
         console.error(error.stack);
@@ -34,12 +36,14 @@ const createPostTblQuery = `
     CREATE TABLE IF NOT EXISTS "posts" (
         "id" SERIAL PRIMARY KEY,         
 	    "body" VARCHAR(200) NOT NULL,
-        "date" DATE NOT NULL  
+        "date" TIMESTAMP NOT NULL  
+
     );`;
 
 execute(createTblQuery, createPostTblQuery).then(result => {
     if (result) {
-        console.log('Table "users" is created');
+
+        console.log('Table "users" and "posts" were created');
     }
 });
 

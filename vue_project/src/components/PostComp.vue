@@ -13,13 +13,14 @@
         <span class="likeCounter" v-if="post.likeCount != 1"><img src="@/assets/likeButton.png" alt="Like this Post"
                 class="likeButton" v-on:click="likePost(post.id)">
             {{ post.likeCount }} likes</span>
-        <span class="likeCounter" v-else><img src="@/assets/likeButton.png" alt="Like this Post"
-                class="likeButton" v-on:click="likePost(post.id)">
+        <span class="likeCounter" v-else><img src="@/assets/likeButton.png" alt="Like this Post" class="likeButton"
+                v-on:click="likePost(post.id)">
             {{ post.likeCount }} like</span>
     </article>
 </template>
 <script>
 export default {
+    name: "Post",
     props: {
         post: {
             type: Object,
@@ -27,9 +28,12 @@ export default {
         },
     },
     methods: {
-        likePost: function (postId) {
-            this.$store.dispatch("LikePostAct", postId)
-        }
+        fetchAPost(id) {
+            fetch(`http://localhost:3000/api/posts/${id}`)
+                .then((response) => response.json())
+                .then((data) => (this.post = data))
+                .catch((err) => console.log(err.message));
+        },
     }
 }
 </script>

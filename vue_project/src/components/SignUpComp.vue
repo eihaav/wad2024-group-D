@@ -7,6 +7,9 @@
                     v-model="email" /></span>
             <span class="formrow">Password <input type="password" placeholder="Password" name="password" id="password"
                     v-model="password" @input="validatePassword" required /></span>
+            <p :class="{ 'valid': !emailExists, 'invalid': emailExists }">
+                Email already exists.</p>
+
             <button class="bluebutton">Sign Up!</button>
         </form>
         <!-- Password validation messages-->
@@ -48,6 +51,8 @@ export default {
                 specialchar: true,
                 allValid: true,
             },
+            emailExists: false,
+
         };
     },
     methods: {
@@ -114,6 +119,15 @@ export default {
                 credentials: 'include',
                 body: JSON.stringify(data),
             })
+                .then((response) => {
+                    if (response.status == 409){
+                        console.log("Email Already Exists")
+                        this.emailExists = true;
+                        return;
+                    }
+                    return response;
+                })
+
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);

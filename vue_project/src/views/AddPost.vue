@@ -6,7 +6,7 @@
             <p>Body</p><textarea placeholder="Post Body" name="postbody" required v-model="post.body"></textarea>
         </span>
         <div class="buttons">
-            <button class="bluebutton" @click="createPost">Add</button>
+            <button class="bluebutton" @click="addPost">Add</button>
         </div>
     </div>
     <Footer></Footer>
@@ -33,7 +33,19 @@ export default {
         };
     },
     methods: {
-        
+        /** addPost */
+        addPost() {
+            const currentDate = new Date().toISOString().split('T')[0];
+            this.post.date = currentDate;
+
+            console.log('Post added: ', this.post);
+
+            this.post = {
+                id: '',
+                title: '',
+                date: '',
+            };
+        }
     },
 };
 </script>

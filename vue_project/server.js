@@ -32,8 +32,9 @@ app.post('/api/posts', async(req, res) => {
     try {
         console.log("a post request has arrived");
         const post = req.body;
+        console.log(post)
         const newpost = await pool.query(
-            "INSERT INTO posts(title, body, urllink) values ($1, $2)    RETURNING*", [post.body, post.date]
+            "INSERT INTO posts(body, date) values ($1, $2)    RETURNING*", [post.body, post.date]
         );
         res.json(newpost);
     } catch (err) {
@@ -95,6 +96,17 @@ app.delete('/api/posts/:id', async(req, res) => {
     }
 });
 
+app.delete('/api/posts', async(req, res) => {
+    try {
+        console.log("delete all the posts request has arrived");
+        const deleteAllPosts = await pool.query(
+            "DELETE FROM posts"
+        );
+        res.json(deleteAllPosts);
+    } catch (err) {
+        console.error(err.message);
+    }
+})
 
 // is used to check whether a user is authinticated
 app.get('/auth/authenticate', async(req, res) => {

@@ -6,7 +6,7 @@
             <p>Body</p><textarea placeholder="Post Body" name="postbody" required v-model="post.body"></textarea>
         </span>
         <div class="buttons">
-            <button class="bluebutton" @click="createPost">Add</button>
+            <button class="bluebutton" @click="addPost">Add</button>
         </div>
     </div>
     <Footer></Footer>
@@ -27,13 +27,40 @@ export default {
         return {
             post: {
                 id: "",
-                title: "",
+                body: "",
                 date: ""
             },
         };
     },
     methods: {
-        
+        /** addPost */
+        async addPost() {
+            const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' '); // 'YYYY-MM-DD HH:MM:SS'
+            this.post.date = currentDate;
+
+            console.log('Post added: ', this.post);
+
+
+            try {
+                const response = await fetch("http://localhost:3000/api/posts", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(this.post),
+                });
+                console.log(response);
+            } catch (error) {
+                console.error("Failed to save post:", error);
+            }
+
+            
+            this.post = {
+                id: '',
+                body: '',
+                date: '',
+            };
+        }
     },
 };
 </script>

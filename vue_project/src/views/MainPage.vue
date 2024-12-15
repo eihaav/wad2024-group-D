@@ -52,6 +52,19 @@ export default {
     },
     AddPost(){
       this.$router.push("/addpost");
+    },
+    DeleteAllPosts() {
+      fetch("http://localhost:3000/api/posts/", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                }).then((response) => {
+                    console.log(response.data);
+                    this.$router.push("/");
+                    location.reload(); // reloads window
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
     }
   }
 }

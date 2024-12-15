@@ -96,6 +96,17 @@ app.delete('/api/posts/:id', async(req, res) => {
     }
 });
 
+app.delete('/api/posts', async(req, res) => {
+    try {
+        console.log("delete all the posts request has arrived");
+        const deleteAllPosts = await pool.query(
+            "DELETE FROM posts"
+        );
+        res.json(deleteAllPosts);
+    } catch (err) {
+        console.error(err.message);
+    }
+})
 
 // is used to check whether a user is authinticated
 app.get('/auth/authenticate', async(req, res) => {

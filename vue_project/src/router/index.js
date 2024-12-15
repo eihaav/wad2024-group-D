@@ -43,45 +43,51 @@ const routes = [
       import("../views/ContactPage.vue"),
     meta: { title: "Contact Us" }
   },
-{
-  path: '/addpost',
+  {
+    path: '/addpost',
     name: 'addpost',
-      component: AddPost,
-        meta: { title: "Add Post" },
-  beforeEnter: async (to, from, next) => {
-    let authResult = await auth.authenticated();
-    if (!authResult) {
-      next('/login')
-    } else {
-      next();
+    component: AddPost,
+    meta: { title: "Add Post" },
+    beforeEnter: async (to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+        next('/login')
+      } else {
+        next();
+      }
     }
-  }
-},
-{
-  path: "/api/singlepost/:id",
+  },
+  {
+    path: "/api/singlepost/:id",
     name: "SinglePost",
-      component: SinglePost,
-        beforeEnter: async (to, from, next) => {
-          let authResult = await auth.authenticated();
-          if (!authResult) {
-            next('/login')
-          } else {
-            next();
-          }
-        }
-},
-{
-  path: '/contacts',
+    component: SinglePost,
+    beforeEnter: async (to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+        next('/login')
+      } else {
+        next();
+      }
+    },
+    meta: { title: "Editing Post" }
+  },
+  {
+    path: '/contacts',
     name: 'contacts',
-      component: () =>
-        import("../views/ContactPage.vue"),
-        meta: { title: "Contact Us" }
-},
+    component: () =>
+      import("../views/ContactPage.vue"),
+    meta: { title: "Contact Us" }
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.afterEach((to, from, next) => {
+  document.title =
+    to.meta.title || "Group D's Project";
+});
 
 export default router

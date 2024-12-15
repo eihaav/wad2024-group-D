@@ -35,7 +35,9 @@ export default {
     },
     methods: {
         fetchAPost(id) {
-            fetch(`http://localhost:3000/api/posts/${id}`)
+            fetch(`http://localhost:3000/api/posts/${id}`, {
+                credentials: 'include',
+            })
                 .then((response) => response.json())
                 .then((data) => (this.post = data))
                 .catch((err) => console.log(err.message));
@@ -43,6 +45,7 @@ export default {
         updatePost() {
             console.log(this.post);
             fetch(`http://localhost:3000/api/posts/${this.post.id}`, {
+                credentials: "include",
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -59,6 +62,7 @@ export default {
         },
         deletePost() {
             fetch(`http://localhost:3000/api/posts/${this.post.id}`, {
+                credentials: "include",
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" },
             })
@@ -109,7 +113,8 @@ form {
     align-items: center;
     justify-content: end;
 }
-.formrow p{
+
+.formrow p {
     align-self: flex-start;
     margin: 13px;
 }
@@ -125,7 +130,8 @@ form {
 
     background-color: rgb(209, 235, 192);
 }
-.center_box > span{
+
+.center_box>span {
     white-space: nowrap;
     margin: 10px;
 }

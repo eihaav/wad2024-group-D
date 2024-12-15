@@ -21,15 +21,44 @@ const maxAge = 60 * 60; //unlike cookies, the expiresIn in jwt token is calculat
 
 const generateJWT = (id) => {
     return jwt.sign({ id }, secret, { expiresIn: maxAge })
-        //jwt.sign(payload, secret, [options, callback]), and it returns the JWT as string
+    //jwt.sign(payload, secret, [options, callback]), and it returns the JWT as string
 }
 
 app.listen(port, () => {
     console.log("Server is listening to port " + port)
 });
 
-app.post('/api/posts', async(req, res) => {
-    try {
+app.post('/api/posts', async (req, res) => {
+    
+    // All api/posts requests also authenticate first to prevent external requests from going through, e.g. Postman
+
+    try { 
+        const token = req.cookies.jwt; // assign the token named jwt to the token const
+        let authenticated = false; // a user is not authenticated until proven the opposite
+        try {
+            if (token) { //checks if the token exists
+                await jwt.verify(token, secret, (err) => { //token exists, now we try to verify it
+                    if (err) { // not verified, redirect to login page
+                        console.log(err.message);
+                        console.log('token is not verified');
+                        res.send({ "authenticated": authenticated }); // authenticated = false
+                        return;
+                    } else { // token exists and it is verified 
+                        console.log('author is authinticated');
+                        authenticated = true;
+                    }
+                })
+            } else { //applies when the token does not exist
+                console.log('author is not authenticated');
+
+                res.send({ "authenticated": authenticated }); // authenticated = false
+                return;
+            }
+        } catch (err) {
+            console.error(err.message);
+            res.status(400).send(err.message);
+            return;
+        }
         console.log("a post request has arrived");
         const post = req.body;
         console.log(post)
@@ -42,8 +71,34 @@ app.post('/api/posts', async(req, res) => {
     }
 });
 
-app.get('/api/posts', async(req, res) => {
+app.get('/api/posts', async (req, res) => {
     try {
+        const token = req.cookies.jwt; // assign the token named jwt to the token const
+        let authenticated = false; // a user is not authenticated until proven the opposite
+        try {
+            if (token) { //checks if the token exists
+                await jwt.verify(token, secret, (err) => { //token exists, now we try to verify it
+                    if (err) { // not verified, redirect to login page
+                        console.log(err.message);
+                        console.log('token is not verified');
+                        res.send({ "authenticated": authenticated }); // authenticated = false
+                        return;
+                    } else { // token exists and it is verified 
+                        console.log('author is authinticated');
+                        authenticated = true;
+                    }
+                })
+            } else { //applies when the token does not exist
+                console.log('author is not authenticated');
+
+                res.send({ "authenticated": authenticated }); // authenticated = false
+                return;
+            }
+        } catch (err) {
+            console.error(err.message);
+            res.status(400).send(err.message);
+            return;
+        }
         console.log("get posts request has arrived");
         const posts = await pool.query(
             "SELECT * FROM posts"
@@ -54,8 +109,34 @@ app.get('/api/posts', async(req, res) => {
     }
 });
 
-app.get('/api/posts/:id', async(req, res) => {
+app.get('/api/posts/:id', async (req, res) => {
     try {
+        const token = req.cookies.jwt; // assign the token named jwt to the token const
+        let authenticated = false; // a user is not authenticated until proven the opposite
+        try {
+            if (token) { //checks if the token exists
+                await jwt.verify(token, secret, (err) => { //token exists, now we try to verify it
+                    if (err) { // not verified, redirect to login page
+                        console.log(err.message);
+                        console.log('token is not verified');
+                        res.send({ "authenticated": authenticated }); // authenticated = false
+                        return;
+                    } else { // token exists and it is verified 
+                        console.log('author is authinticated');
+                        authenticated = true;
+                    }
+                })
+            } else { //applies when the token does not exist
+                console.log('author is not authenticated');
+
+                res.send({ "authenticated": authenticated }); // authenticated = false
+                return;
+            }
+        } catch (err) {
+            console.error(err.message);
+            res.status(400).send(err.message);
+            return;
+        }
         console.log("get a post with route parameter  request has arrived");
         const { id } = req.params;
         const posts = await pool.query(
@@ -67,8 +148,34 @@ app.get('/api/posts/:id', async(req, res) => {
     }
 });
 
-app.put('/api/posts/:id', async(req, res) => {
+app.put('/api/posts/:id', async (req, res) => {
     try {
+        const token = req.cookies.jwt; // assign the token named jwt to the token const
+        let authenticated = false; // a user is not authenticated until proven the opposite
+        try {
+            if (token) { //checks if the token exists
+                await jwt.verify(token, secret, (err) => { //token exists, now we try to verify it
+                    if (err) { // not verified, redirect to login page
+                        console.log(err.message);
+                        console.log('token is not verified');
+                        res.send({ "authenticated": authenticated }); // authenticated = false
+                        return;
+                    } else { // token exists and it is verified 
+                        console.log('author is authinticated');
+                        authenticated = true;
+                    }
+                })
+            } else { //applies when the token does not exist
+                console.log('author is not authenticated');
+
+                res.send({ "authenticated": authenticated }); // authenticated = false
+                return;
+            }
+        } catch (err) {
+            console.error(err.message);
+            res.status(400).send(err.message);
+            return;
+        }
         const { id } = req.params;
         const post = req.body;
         console.log("update request has arrived");
@@ -83,8 +190,34 @@ app.put('/api/posts/:id', async(req, res) => {
     }
 });
 
-app.delete('/api/posts/:id', async(req, res) => {
+app.delete('/api/posts/:id', async (req, res) => {
     try {
+        const token = req.cookies.jwt; // assign the token named jwt to the token const
+        let authenticated = false; // a user is not authenticated until proven the opposite
+        try {
+            if (token) { //checks if the token exists
+                await jwt.verify(token, secret, (err) => { //token exists, now we try to verify it
+                    if (err) { // not verified, redirect to login page
+                        console.log(err.message);
+                        console.log('token is not verified');
+                        res.send({ "authenticated": authenticated }); // authenticated = false
+                        return;
+                    } else { // token exists and it is verified 
+                        console.log('author is authinticated');
+                        authenticated = true;
+                    }
+                })
+            } else { //applies when the token does not exist
+                console.log('author is not authenticated');
+
+                res.send({ "authenticated": authenticated }); // authenticated = false
+                return;
+            }
+        } catch (err) {
+            console.error(err.message);
+            res.status(400).send(err.message);
+            return;
+        }
         const { id } = req.params;
         console.log("delete a post request has arrived");
         const deletepost = await pool.query(
@@ -96,8 +229,34 @@ app.delete('/api/posts/:id', async(req, res) => {
     }
 });
 
-app.delete('/api/posts', async(req, res) => {
+app.delete('/api/posts', async (req, res) => {
     try {
+        const token = req.cookies.jwt; // assign the token named jwt to the token const
+        let authenticated = false; // a user is not authenticated until proven the opposite
+        try {
+            if (token) { //checks if the token exists
+                await jwt.verify(token, secret, (err) => { //token exists, now we try to verify it
+                    if (err) { // not verified, redirect to login page
+                        console.log(err.message);
+                        console.log('token is not verified');
+                        res.send({ "authenticated": authenticated }); // authenticated = false
+                        return;
+                    } else { // token exists and it is verified 
+                        console.log('author is authinticated');
+                        authenticated = true;
+                    }
+                })
+            } else { //applies when the token does not exist
+                console.log('author is not authenticated');
+
+                res.send({ "authenticated": authenticated }); // authenticated = false
+                return;
+            }
+        } catch (err) {
+            console.error(err.message);
+            res.status(400).send(err.message);
+            return;
+        }
         console.log("delete all the posts request has arrived");
         const deleteAllPosts = await pool.query(
             "DELETE FROM posts"
@@ -109,7 +268,7 @@ app.delete('/api/posts', async(req, res) => {
 })
 
 // is used to check whether a user is authinticated
-app.get('/auth/authenticate', async(req, res) => {
+app.get('/auth/authenticate', async (req, res) => {
     console.log('authentication request has been arrived');
     const token = req.cookies.jwt; // assign the token named jwt to the token const
     //console.log("token " + token);
@@ -140,14 +299,14 @@ app.get('/auth/authenticate', async(req, res) => {
 });
 
 // signup a user
-app.post('/auth/signup', async(req, res) => {
+app.post('/auth/signup', async (req, res) => {
     try {
         console.log("a signup request has arrived");
         //console.log(req.body);
         const { email, password } = req.body;
 
         const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
-        if (user.rows.length > 0){
+        if (user.rows.length > 0) {
             res.status(409).send("EMAIL_EXISTS");
             return;
         }
@@ -173,7 +332,7 @@ app.post('/auth/signup', async(req, res) => {
     }
 });
 
-app.post('/auth/login', async(req, res) => {
+app.post('/auth/login', async (req, res) => {
     try {
         console.log("a login request has arrived");
         const { email, password } = req.body;

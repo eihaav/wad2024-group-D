@@ -32,8 +32,9 @@ app.post('/api/posts', async(req, res) => {
     try {
         console.log("a post request has arrived");
         const post = req.body;
+        console.log(post)
         const newpost = await pool.query(
-            "INSERT INTO posts(title, body, urllink) values ($1, $2)    RETURNING*", [post.body, post.date]
+            "INSERT INTO posts(body, date) values ($1, $2)    RETURNING*", [post.body, post.date]
         );
         res.json(newpost);
     } catch (err) {

@@ -27,22 +27,37 @@ export default {
         return {
             post: {
                 id: "",
-                title: "",
+                body: "",
                 date: ""
             },
         };
     },
     methods: {
         /** addPost */
-        addPost() {
-            const currentDate = new Date().toISOString().split('T')[0];
+        async addPost() {
+            const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' '); // 'YYYY-MM-DD HH:MM:SS'
             this.post.date = currentDate;
 
             console.log('Post added: ', this.post);
 
+
+            try {
+                const response = await fetch("http://localhost:3000/api/posts", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(this.post),
+                });
+                console.log(response);
+            } catch (error) {
+                console.error("Failed to save post:", error);
+            }
+
+            
             this.post = {
                 id: '',
-                title: '',
+                body: '',
                 date: '',
             };
         }
